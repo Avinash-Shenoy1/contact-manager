@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In</title>
+</head>
+<body>
+<section>
+    <div th:fragment="signin">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="custom-card p-4">
+                    <h2 class="text-center mb-4" style="font-size: 2rem; color: #007bff;">Sign In</h2>
+
+
+                    <div th:if="${param.error}" class="alert alert-danger" role="alert" id="messageAlert">
+                        <p> Invalid Username and Password</p>
+                    </div>
+
+                    <div th:if="${param.logout}" class="alert alert-success" role="alert" id="logoutAlert">
+                        <p> You have been logged out!</p>
+                    </div>
+
+                    <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+
+                    <!-- Sign In Form -->
+                    <form th:action="@{/dologin}" action="#" method="post">
+
+                        <!-- Email Field -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="username" placeholder="Enter your email" required>
+                        </div>
+
+                        <!-- Password Field -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                        </div>
+
+                        <!-- Remember Me Checkbox -->
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="rememberMe" name="rememberMe">
+                            <label class="form-check-label" for="rememberMe" >Remember Me</label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Sign In</button>
+                        </div>
+
+                        <!-- Forgot Password Link -->
+                        <div class="text-center mt-3">
+                            <a href="/forgot-password" class="text-decoration-none">Forgot Password?</a>
+                        </div>
+                    </form>
+                    <div class="mt-3 text-center">
+                        <p>Don't have an account? <a th:href="@{/signup}">Sign Up Here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

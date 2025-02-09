@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Search Results Cards -->
+<div class="custom-card p-2">
+  <div th:if="${contacts.isEmpty()}">
+    <p class="text-muted mb-0">No results found for "<span th:text="${query}"></span>"</p>
+  </div>
+
+  <div th:each="contact : ${contacts}" class="mb-2">
+    <div class="d-flex align-items-center gap-3 p-2 bg-light rounded">
+      <!-- Contact Image -->
+      <a th:href="@{'/user/contact/' + ${contact.cId}}">
+      <img th:src="@{'/image/' + ${contact.image}}"
+           class="img-thumbnail rounded-circle"
+           style="width: 40px; height: 40px; object-fit: cover;">
+      </a>
+
+      <!-- Contact Details -->
+      <div>
+          <a th:href="@{'/user/contact/' + ${contact.cId}}">
+            <h6 class="mb-0" th:text="${contact.name}"></h6> </a>
+        <a th:href="@{'/user/contact/' + ${contact.cId}}">
+        <small class="text-muted" th:text="${contact.phone}"></small>
+        </a>
+      </div>
+
+      <!-- View Button -->
+<!--      <a th:href="@{'/user/contact/' + ${contact.cId}}"-->
+<!--         class="btn btn-primary btn-sm ms-auto">-->
+<!--        <i class="fas fa-eye"></i>-->
+<!--      </a>-->
+    </div>
+  </div>
+</div>
+</body>
+</html>

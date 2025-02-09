@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base :: layout(~{::main})}">
+<head>
+    <title>Update Contact - Smart Contact Manager</title>
+</head>
+<body>
+<main>
+    <div class="container-fluid">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="text-primary">Update Contact</h2>
+                <p class="lead">Edit the details to update the contact</p>
+            </div>
+            <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert fade show" role="alert" id="messageAlert">
+                <span th:text="${session.message.content}"></span>
+            </div>
+            <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+        </div>
+        </div>
+
+        <!-- Update Contact Form -->
+        <div class="custom-card">
+            <form th:action="@{/user/process-update}" th:object="${contact}" method="post" enctype="multipart/form-data">
+                <input type="hidden" th:value="${contact.cId}" name="cId">
+                <div class="row g-4">
+                    <!-- Left Column -->
+                    <div class="col-md-6">
+                        <!-- Name Fields -->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="name"
+                                       th:value="${contact.name}" placeholder="Enter first name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="secondName"
+                                       th:value="${contact.secondName}" placeholder="Enter last name">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="work" class="form-label">Work</label>
+                            <input type="text" class="form-control" id="work" name="work"
+                                   th:value="${contact.work}" placeholder="Enter work details">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                   th:value="${contact.email}" placeholder="Enter email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" id="phone" name="phone"
+                                   th:value="${contact.phone}" placeholder="Enter phone number" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description"
+                                      placeholder="Enter about the contact" th:text="${contact.description}"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-md-6">
+                        <!-- Image Upload -->
+                        <div class="mb-4 text-center">
+                            <div class="image-preview mb-3">
+                                <img id="contactImagePreview" th:src="@{'/image/' + ${contact.image}}"
+                                     class="img-thumbnail rounded-circle"
+                                     alt="Contact preview"
+                                     style="width: 200px; height: 200px; object-fit: cover;">
+                            </div>
+
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="image" name="images"
+                                       accept="image/*" onchange="previewImage(event)">
+                                <label class="input-group-text" for="image">Upload Image</label>
+                            </div>
+                            <div class="form-text">Max file size: 2MB (JPEG/PNG)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                    <button type="submit" class="btn btn-primary px-5">
+                        <i class="fas fa-save me-2"></i>Update Contact
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<!-- Image Preview Script -->
+<script>
+    function previewImage(event) {
+        const reader = new FileReader();
+        const preview = document.getElementById('contactImagePreview');
+
+        reader.onload = function() {
+            if (reader.readyState === 2) {
+                preview.src = reader.result;
+            }
+        }
+
+        if (event.target.files[0]) {
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    }
+</script>
+</body>
+</html>

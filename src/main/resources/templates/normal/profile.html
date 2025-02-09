@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base :: layout(~{::main})}">
+<head>
+  <title>Profile - Smart Contact Manager</title>
+</head>
+<body>
+<main>
+  <div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <h2 class="text-primary">Your Profile</h2>
+        <p class="lead">Manage your account details</p>
+      </div>
+    </div>
+
+    <!-- Profile Details Card -->
+    <div class="custom-card">
+      <div class="row">
+        <!-- Left Column: Profile Image -->
+        <div class="col-md-4 text-center">
+          <img th:src="@{'/image/default-contact.png'}"
+               class="img-thumbnail rounded-circle"
+               alt="Profile Image"
+               style="width: 150px; height: 150px; object-fit: cover;">
+        </div>
+
+        <!-- Right Column: Profile Details -->
+        <div class="col-md-8">
+          <div class="row mb-3">
+            <div class="col-12">
+              <h3 th:text="${user.name}"></h3>
+              <p class="text-muted" th:text="${user.role}"></p>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Account Active:</strong> <span th:text="${user.enabled ? true:false}"></span></p>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-12">
+              <p><strong>About:</strong></p>
+              <p th:text="${user.about}"></p>
+            </div>
+          </div>
+
+          <!-- Change Password Link -->
+          <div class="row mb-3">
+            <div class="col-12">
+              <a href="/user/password" class="btn btn-warning">
+                <i class="fas fa-key me-2"></i>Change Password
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

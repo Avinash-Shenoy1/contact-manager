@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base :: layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+</head>
+<body>
+<section>
+    <div th:fragment="content">
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-8 mx-auto text-center">
+                    <h2>About Smart Contact Manager</h2>
+                    <p class="lead mt-3">
+                        Smart Contact Manager is designed to help you securely store, organize, and manage your contacts
+                        with ease.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <img src="/image/about-us.jpg" alt="About Us" class="img-fluid rounded">
+                </div>
+                <div class="col-md-6 d-flex align-items-center">
+                    <p>
+                        Our mission is to provide a user-friendly platform for individuals and businesses to handle
+                        their contact information securely and efficiently. With features like real-time access,
+                        encrypted storage, and professional tools, we aim to streamline your contact management process.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-4 text-center">
+                    <div class="custom-card p-4">
+                        <h4>Our Vision</h4>
+                        <p>To revolutionize how people manage and access their contact data.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="custom-card p-4">
+                        <h4>Our Mission</h4>
+                        <p>Deliver a secure and reliable solution for everyone.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="custom-card p-4">
+                        <h4>Our Values</h4>
+                        <p>Trust, innovation, and user-centric design.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

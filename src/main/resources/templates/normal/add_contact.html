@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base :: layout(~{::main})}">
+<head>
+  <title>New Contact - Smart Contact Manager</title>
+</head>
+<body>
+<main>
+  <div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <h2 class="text-primary">Add New Contact</h2>
+        <p class="lead">Fill in the details to create a new contact</p>
+      </div>
+      <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert fade show" role="alert" id="messageAlert">
+        <span th:text="${session.message.content}"></span>
+      </div>
+      <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+
+    </div>
+    <!-- Contact Form -->
+    <div class="custom-card">
+      <form th:object="${contact}" th:action="@{/user/process-contact}" method="post" enctype="multipart/form-data">
+        <div class="row g-4">
+          <!-- Left Column -->
+          <div class="col-md-6">
+            <!-- Name Fields -->
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstName" name="name" placeholder="Enter first name" required>
+<!--                       th:field="*{contact.firstName}" -->
+              </div>
+              <div class="col-md-6">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="secondName" placeholder="Enter last name" >
+<!--                       th:field="*{contact.lastName}"-->
+
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="work" class="form-label">Work</label>
+              <input type="text" class="form-control" id="work" name="work" placeholder="Enter Work details" >
+<!--                     th:field="*{contact.work}">-->
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required placeholder="Enter email-id" >
+              <!--                     th:field="*{contact.email}" -->
+            </div>
+
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="tel" class="form-control" id="phone" name="phone" required placeholder="Enter phone number" >
+<!--                     th:field="*{contact.phone}" -->
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea type="text"  class="form-control" id="description" name="description" required placeholder="Enter about the contact" ></textarea>
+              <!--                     th:field="*{contact.phone}" -->
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="col-md-6">
+            <!-- Image Upload -->
+            <div class="mb-4 text-center">
+              <div class="image-preview mb-3">
+                <img id="contactImagePreview" src="/image/default-contact.png"
+                     class="img-thumbnail rounded-circle"
+                     alt="Contact preview"
+                     style="width: 200px; height: 200px; object-fit: cover;">
+              </div>
+
+              <div class="input-group">
+                <input type="file" class="form-control" id="image" name="images"
+                       accept="image/*" onchange="previewImage(event)" >
+                <label class="input-group-text" for="image">Upload Image</label>
+              </div>
+              <div class="form-text">Max file size: 2MB (JPEG/PNG)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button type="submit" class="btn btn-primary px-5">
+            <i class="fas fa-save me-2"></i>Save Contact
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+</body>
+</html>

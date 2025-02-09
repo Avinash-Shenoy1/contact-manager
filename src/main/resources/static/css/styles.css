@@ -1,0 +1,545 @@
+/* ====================== */
+/*      BASE STYLES       */
+/* ====================== */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #0056b3;
+    --light-bg: #f8f9fa;
+    --text-dark: #333;
+    --text-light: #fff;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ====================== */
+/*      UTILITIES         */
+/* ====================== */
+.container {
+    padding: 20px;
+    flex: 1;
+}
+
+.text-center { text-align: center; }
+.mt-4 { margin-top: 1.5rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+
+/* ====================== */
+/*      NAVIGATION        */
+/* ====================== */
+.navbar {
+    background-color: var(--primary-color);
+    padding: 1rem 2rem;
+}
+
+.navbar-brand,
+.nav-link {
+    color: var(--text-light) !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #e3f2fd !important;
+}
+
+/* ====================== */
+/*      CARDS             */
+/* ====================== */
+.custom-card {
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.home-bg {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('/image/home-bg.webp') no-repeat center center/cover;
+    color: white;
+    padding: 2rem 0;
+}
+.custom-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.custom-card h4 {
+    color: #fff;
+}
+
+.custom-card p {
+    color: #323030;
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Button Styling for Visibility */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+/* Enhancements for Welcome Message */
+.home-bg .col-md-8 {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.home-bg h2 {
+    font-size: 3rem;
+}
+
+/* Enhancements for Custom Cards */
+.custom-card {
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.custom-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.home-bg h2 {
+    font-size: 3rem;
+    color: white; /* Change color to white */
+}
+
+/* ====================== */
+/*      BUTTONS           */
+/* ====================== */
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--text-light);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.btn-sm {
+    padding: 5px 15px;
+    font-size: 0.9rem;
+}
+
+/* ====================== */
+/*      SIDEBAR           */
+/* ====================== */
+#sidebar {
+    width: 250px;
+    height: 100vh;
+    background: var(--primary-color);
+    color: var(--text-light);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+}
+
+#sidebar.active {
+    width: 80px;
+}
+
+#sidebar.active .sidebar-header h3,
+#sidebar.active .nav-link span {
+    display: none;
+}
+
+#sidebar.active .nav-link {
+    justify-content: center;
+    padding: 12px 0;
+}
+
+#sidebar.active .nav-link i {
+    margin-right: 0;
+}
+
+.sidebar-header {
+    padding: 20px;
+    background: var(--secondary-color);
+    text-align: center;
+}
+
+.sidebar-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+}
+
+.nav-link {
+    color: var(--text-light);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+.nav-link i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+}
+
+.nav-link:hover {
+    background: var(--secondary-color);
+}
+
+/* ====================== */
+/*      CONTENT AREA      */
+/* ====================== */
+#content {
+    padding-left: 250px;
+    width: 100%;
+    min-height: 100vh;
+    transition: padding-left 0.3s ease;
+    position: relative;
+}
+
+#content.active {
+    padding-left: 80px;
+}
+
+/* ====================== */
+/*      HAMBURGER BUTTON  */
+/* ====================== */
+#sidebarToggle {
+    background: #007bff;  /* Set background color to white */
+    border: none;
+    font-size: 1.0rem;
+    color:  #ffff;  /* Set the icon color to primary color */
+    cursor: pointer;
+    position: relative;
+    bottom: 1px;
+    z-index: 100;
+    padding: 10px;  /* Add padding for a better click area */
+    border-radius: 5px;  /* Optional: rounded corners */
+}
+
+#sidebarToggle i {
+    color: #ffffff;  /* Icon color */
+}
+
+#sidebarToggle:focus {
+    outline: none;  /* Remove outline on focus */
+}
+
+/* ====================== */
+/*      RESPONSIVE        */
+/* ====================== */
+@media (max-width: 768px) {
+    #sidebar {
+        left: -250px;
+    }
+
+    #sidebar.active {
+        left: 0;
+        width: 250px;
+    }
+
+    #content {
+        padding-left: 0 !important;
+    }
+
+    #sidebarToggle {
+        left: 10px;
+        top: 10px;
+    }
+}
+
+/* ====================== */
+/*      FOOTER            */
+/* ====================== */
+footer {
+    background-color: #e3f2fd;
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* ====================== */
+/*      TYPOGRAPHY        */
+/* ====================== */
+h1 { font-size: 2rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 0.875rem; }
+
+p, .lead {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* ====================== */
+/*      TABLES            */
+/* ====================== */
+.table {
+    width: 100%;
+    margin: 1.5rem 0;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+
+/* Contact Form Specific Styles */
+.form-label {
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    padding: 0.75rem 1rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+.img-thumbnail {
+    padding: 0.25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 50%;
+    max-width: 100%;
+    height: auto;
+}
+
+.input-group-text {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+/* Custom Alert Styling */
+.alert {
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.alert-dismissible .btn-close {
+    padding: 0.75rem;
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+}
+
+
+/* Pagination Styling */
+.pagination {
+    margin: 0;
+}
+
+.page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.page-link {
+    color: var(--primary-color);
+    border: 1px solid #dee2e6;
+    margin: 0 2px;
+    border-radius: 4px;
+}
+
+.page-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+
+
+/* Live Search Results */
+#searchResults {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#searchResults .custom-card {
+    box-shadow: none;
+    padding: 0;
+}
+
+#searchResults .img-thumbnail {
+    width: 40px;
+    height: 40px;
+    padding: 2px;
+}
+
+/* Change Password Form */
+.change-password-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.change-password-card .form-label {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.change-password-card .form-control {
+    border-radius: 5px;
+    padding: 0.75rem 1rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.change-password-card .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+.change-password-card .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.change-password-card .btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+
+
+/* Forgot Password Page */
+.custom-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #495057;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 0.5rem 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Action Buttons Styling */
+.action-btn {
+    width: 50px; /* Fixed width */
+    height: 26px; /* Fixed height */
+    padding: 0.375rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* For icon-only buttons */
+.action-btn i {
+    margin: 0 !important;
+}
+
+/* Button Colors */
+.btn-primary.action-btn {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-success.action-btn {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-danger.action-btn {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+

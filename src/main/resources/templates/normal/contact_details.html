@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base :: layout(~{::main})}">
+<head>
+    <title>Contact Details - Smart Contact Manager</title>
+</head>
+<body>
+<main>
+    <div class="container-fluid">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="text-primary">Contact Details</h2>
+                <p class="lead">Detailed information about the contact</p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <a th:href="@{/user/view-contacts/0}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Contacts
+                </a>
+            </div>
+        </div>
+
+        <!-- Contact Details Card -->
+        <div class="custom-card" >
+            <div class="row">
+                <!-- Left Column: Contact Image -->
+                <div class="col-md-4 text-center">
+                    <img th:src="@{'/image/' + ${contact.image}}"
+                         class="img-thumbnail rounded-circle"
+                         alt="Contact Image"
+                         style="width: 200px; height: 200px; object-fit: cover;">
+                </div>
+
+                <!-- Right Column: Contact Details -->
+                <div class="col-md-8">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <h3 th:text="${contact.name +' '+ contact.secondName}"></h3>
+                            <p class="text-muted" th:text="${contact.work}"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p><strong>Email:</strong> <span th:text="${contact.email}"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Phone:</strong> <span th:text="${contact.phone}"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <p><strong>Description:</strong></p>
+                            <p th:text="${contact.description}"></p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="row">
+                        <div class="col-12">
+                            <form method="post" th:action="@{'/user/update-contact/' + ${contact.cId}}">
+                            <button type="submit"
+                               class="btn btn-success me-2">
+                                <i class="fas fa-edit me-2"></i>Edit
+                            </button>
+                            <a href="#" th:onclick="|deleteContact(${contact.cId})|"
+                               class="btn btn-danger">
+                                <i class="fas fa-trash me-2"></i>Delete
+                            </a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function deleteContact(cid)
+        {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to delete this contact?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location="/user/delete/"+cid;
+                }
+            });
+        }
+    </script>
+</main>
+</body>
+</html>

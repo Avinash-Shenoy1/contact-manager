@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base :: layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+<section>
+    <div th:fragment="content">
+        <div class="container-fluid home-bg">
+            <div class="row justify-content-center text-center text-white" style="height: 100vh; align-items: center;">
+                <div class="col-md-8">
+                    <h2>Welcome to Smart Contact Manager</h2>
+                    <p class="lead mt-3">
+                        Your professional and secure solution for managing contacts with ease.
+                    </p>
+                    <a href="/signup" class="btn btn-primary mt-3">Get Started</a>
+                </div>
+            </div>
+
+            <div class="row mt-5 text-white">
+                <div class="col-md-4 text-center">
+                    <div class="custom-card p-4">
+                        <h4>Secure Storage</h4>
+                        <p>Keep your contact data safe and encrypted.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="custom-card p-4">
+                        <h4>Easy Access</h4>
+                        <p>Access your contacts anytime, anywhere.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="custom-card p-4">
+                        <h4>Professional Tools</h4>
+                        <p>Streamline your contact management with advanced features.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

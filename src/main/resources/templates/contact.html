@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base :: layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us</title>
+</head>
+<body>
+<section>
+  <div th:fragment="content">
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-md-8 mx-auto text-center">
+          <h2>Contact Us</h2>
+          <p class="lead mt-3">
+            We'd love to hear from you! Feel free to reach out with any questions, feedback, or inquiries.
+          </p>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-md-6">
+          <img src="/image/contact-us.jpg" alt="Contact Us" class="img-fluid rounded">
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+          <div>
+            <h4>Get in Touch</h4>
+            <p>
+              Email: <a href="mailto:support@smartcontactmanager.com">support@smartcontactmanager.com</a><br>
+              Phone: +1 (123) 456-7890<br>
+              Address: 123 Smart Contact Manager Ave, Suite 101, Tech City, TC 45678
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-md-8 mx-auto">
+          <div class="custom-card p-4">
+            <h4 class="text-center">Send Us a Message</h4>
+            <form th:action="@{/contact}" method="post">
+              <!-- Name Field -->
+              <div class="mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+              </div>
+
+              <!-- Email Field -->
+              <div class="mb-3">
+                <label for="email" class="form-label">Your Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+              </div>
+
+              <!-- Message Field -->
+              <div class="mb-3">
+                <label for="message" class="form-label">Your Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Write your message here..." required></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Send Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

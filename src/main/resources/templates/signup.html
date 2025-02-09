@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base :: layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+</head>
+<body>
+<section>
+    <div th:fragment="signup">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="custom-card p-4">
+                    <h2 class="text-center mb-4" style="font-size: 2rem; color: #007bff;">Sign Up</h2>
+
+                    <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert" id="messageAlert">
+                        <p th:text="${session.message.content}"></p>
+                    </div>
+
+                    <!-- Sign Up Form -->
+                    <form novalidate th:action="@{/do_register}" method="post" enctype="multipart/form-data" th:object="${user}">
+                        <!-- Name Field -->
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" th:classappend="${#fields.hasErrors('name') ? 'is-invalid':''}"
+                                   th:field="*{name}" placeholder="Enter your full name" required>
+                            <!-- Display validation error for 'name' -->
+                            <div class="invalid-feedback" >
+                                <span th:each="e : ${#fields.errors('name')}" th:text="${e}"></span>
+                            </div>
+                        </div>
+
+                        <!-- Email Field -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" th:classappend="${#fields.hasErrors('email') ? 'is-invalid':''}" th:value="${user.email}" id="email" name="email" required
+                                   placeholder="Enter your email">
+                            <!-- Display validation error for 'email' -->
+                            <div class="invalid-feedback" >
+                                <span th:each="e : ${#fields.errors('email')}" th:text="${e}"></span>
+                            </div>
+                        </div>
+
+                        <!-- Password Field -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" th:classappend="${#fields.hasErrors('password') ? 'is-invalid':''}" th:value="${user.password}" id="password" name="password" required
+                                   placeholder="Create a password">
+                            <!-- Display validation error for 'email' -->
+                            <div class="invalid-feedback" >
+                                <span th:each="e : ${#fields.errors('password')}" th:text="${e}"></span>
+                            </div>
+                        </div>
+
+                        <!-- About Field -->
+                        <div class="mb-3">
+                            <label for="about" class="form-label">About You</label>
+                            <textarea class="form-control" th:field ="${user.about}" id="about" name="about" rows="4"
+                                      placeholder="Tell us about yourself"></textarea>
+                        </div>
+
+                        <!--                        &lt;!&ndash; Image Field &ndash;&gt;-->
+                        <!--                        <div class="mb-3">-->
+                        <!--                            <label for="image" class="form-label">Profile Picture</label>-->
+                        <!--                            <input type="file" class="form-control" id="image" name="image" accept="image/*">-->
+                        <!--                        </div>-->
+
+                        <!-- Terms and Conditions Checkbox -->
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="agreement" name="agreement" required>
+                            <label class="form-check-label" for="agreement">
+                                I accept the <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#termsModal">Terms & Conditions</a>
+                            </label>
+
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </div>
+                    </form>
+                    <div class="mt-3 text-center">
+                        <p>Already have an account? <a th:href="@{/signin}">Sign In Here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Terms & Conditions Modal -->
+        <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="termsModalLabel">Terms & Conditions</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            <!-- Add your Terms & Conditions content here -->
+                            1. Introduction
+
+                            These Terms and Conditions ("Terms") govern your access to and use of [Application Name] ("Application"). By accessing or using the Application, you agree to be bound by these Terms. If you do not agree to these Terms, please do not use the Application.  <br>
+
+                            2. Use of the Application
+
+                            Permitted Use: You may use the Application for lawful purposes only. You agree not to:
+                            Use the Application in any way that violates any applicable law or regulation.
+                            Use the Application to transmit or store any unlawful, harmful, threatening, abusive, harassing, defamatory, vulgar, obscene, or otherwise objectionable material.
+                            Use the Application to interfere with or disrupt the integrity or performance of the Application.
+                            Use the Application to collect or store any personally identifiable information about others without their consent.
+                            Attempt to gain unauthorized access to the Application or any related systems or networks.
+                            Account Security: If you create an account with the Application, you are responsible for maintaining the confidentiality of your account credentials and for restricting access to your computer. You agree to be responsible for any activity that occurs under your account.  <br>
+                            3. Data Privacy
+
+                            Data Collection: We may collect certain information about you when you use the Application, such as your name, email address, and contact information. We will use this information in accordance with our Privacy Policy.
+                            Data Security: We take reasonable measures to protect the security of your data. However, we cannot guarantee the security of any information transmitted over the internet. <br>
+                            4. Disclaimer of Warranties
+
+                            THE APPLICATION IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE APPLICATION WILL BE UNINTERRUPTED OR ERROR-FREE.  <br>
+
+                            5. Limitation of Liability
+
+                            IN NO EVENT SHALL WE BE LIABLE FOR ANY DAMAGES WHATSOEVER, INCLUDING WITHOUT LIMITATION, DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, ARISING OUT OF OR IN ANY WAY CONNECTED WITH THE USE OF THE APPLICATION.  <br>
+
+                            6. Indemnification
+
+                            You agree to indemnify and hold us harmless from any and all claims, liabilities, damages, and expenses (including attorneys' fees) arising out of your use of the Application or your violation of these Terms.  <br>
+
+                            7. Changes to these Terms
+
+                            We may update these Terms from time to time. We will notify you of any material changes by posting the updated Terms on the Application. Your continued use of the Application after the effective date of any changes constitutes your acceptance of the updated Terms.  <br>
+
+                            8. Governing Law
+
+                            These Terms shall be governed by and construed in accordance with the
+
+                            laws of [Your Jurisdiction].  <br>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
